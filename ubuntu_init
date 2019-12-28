@@ -1,0 +1,11 @@
+#!/bin/bash
+
+sh install_vim
+sh install_pip3
+sh install_git
+sh install_make
+
+sh install_chrome
+sh install_baidu_net_disk
+sh install_atom
+sh install_onedrive

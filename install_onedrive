@@ -1,7 +1,7 @@
 #!/bin/bash
 
-sudo apt install libcurl4-openssl-dev
-sudo apt install libsqlite3-dev
+sudo apt -y install libcurl4-openssl-dev
+sudo apt -y install libsqlite3-dev
 sudo snap install --classic dmd && sudo snap install --classic dub
 git clone https://github.com/skilion/onedrive.git
 cd onedrive
