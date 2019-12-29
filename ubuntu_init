@@ -1,21 +1,20 @@
 #!/bin/bash
 
+sudo apt-get update
+
 script_list_1=(install_vim install_pip3 install_git install_make)
 for i in ${script_list_1[@]}
 do
 {
-	sh $i 2> $i"_err"
-	echo "$i done" >> install_log
-} &
+ 	sh $i 2> $i"_err" && echo "$i done" >> install_log
+
+}
 done
-wait
 
 script_list_2=(install_chrome install_baidu_net_disk install_atom install_onedrive)
 for i in ${script_list_2[@]}
 do
 {
-	sh $i 2> $i"_err"
-	echo "$i done" >> install_log
-} &
+	sh $i 2> $i"_err" && echo "$i done" >> install_log
+}
 done
-wait
