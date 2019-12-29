@@ -1,6 +1,10 @@
 #!/bin/bash
 
+sudo apt-get -y --purge remove aisleriot gnome-mahjongg gnome-mines gnome-sudoku libgnome-games-support-1-3:amd64 libgnome-games-support-common
+
 sudo apt-get update
+
+sudo dpkg-reconfigure dash
 
 script_list_1=(install_vim install_pip3 install_git install_make)
 for i in ${script_list_1[@]}
@@ -10,6 +14,8 @@ do
 
 }
 done
+
+sudo apt-get update
 
 script_list_2=(install_chrome install_baidu_net_disk install_atom install_onedrive)
 for i in ${script_list_2[@]}
