@@ -1,5 +1,4 @@
 #!/bin/bash
 
 sudo add-apt-repository https://atom.io
-sudo apt-get update
 sudo apt-get -y install atom
