@@ -17,7 +17,7 @@ done
 
 sudo apt-get update
 
-script_list_2=(install_chrome install_baidu_net_disk install_atom install_onedrive)
+script_list_2=(install_chrome install_baidu_net_disk install_pycharm install_atom install_onedrive)
 for i in ${script_list_2[@]}
 do
 {
