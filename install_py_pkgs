@@ -1,0 +1,5 @@
+#!/bin/bash
+
+pip3 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ tensorflow numpy matplotlib pandas scipy scikit-learn jupyter bs4 selenium itchat pyperclip
+
+python3 -c "import tensorflow, numpy, matplotlib, pandas, scipy, sklearn, jupyter, bs4, selenium, itchat, pyperclip"
