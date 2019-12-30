@@ -1,0 +1,21 @@
+#!/bin/bash
+
+cd /opt
+sudo wget https://download.jetbrains.8686c.com/python/pycharm-community-2019.3.1.tar.gz
+sudo tar -zxvf pycharm-community*tar*
+sudo rm -f pycharm-community*tar.gz
+cd pycharm-community*/bin
+sh ./pycharm.sh
+cd /usr/share/applications
+sudo touch jetbrains-pycharm-ce.desktop
+sudo chmod 777 jetbrains-pycharm-ce.desktop
+sudo echo "[Desktop Entry]
+Version=1.0
+Type=Application
+Name=PyCharm Community Edition
+Icon=/opt/pycharm-community-2019.3.1/bin/pycharm.svg
+Exec="/opt/pycharm-community-2019.3.1/bin/pycharm.sh" %f
+Comment=Python IDE for Professional Developers
+Categories=Development;IDE;
+Terminal=false
+StartupWMClass=jetbrains-pycharm-ce" >> jetbrains-pycharm-ce.desktop
