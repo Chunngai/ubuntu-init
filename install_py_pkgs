@@ -1,5 +1,12 @@
 #!/bin/bash
 
-pip3 install --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ tensorflow numpy matplotlib pandas scipy scikit-learn jupyter bs4 selenium itchat pyperclip
+sudo pip3 install --upgrade pip
 
-python3 -c "import tensorflow, numpy, matplotlib, pandas, scipy, sklearn, jupyter, bs4, selenium, itchat, pyperclip"
+sudo pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ tensorflow
+sudo pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ numpy matplotlib pandas scipy scikit-learn jupyter opencv-python baidu-aip
+sudo pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ bs4 selenium  
+sudo pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ itchat pyperclip pdfkit
+
+python3 -c "import numpy, matplotlib, pandas, scipy, sklearn, jupyter, bs4, selenium, itchat, pyperclip, cv2, pdfkit, aip"
+
+# tensorflow: 3.6 when python is 3.8 it is unable to be installed
