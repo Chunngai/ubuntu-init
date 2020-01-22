@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Enters /home/*/Downloads
+cd /home/*/Downloads
+
+# Prompts to open the download page and download the bundle package to /home/*/Downloads
+echo "open https://www.vmware.com/go/getworkstation-linux"
+# Waits until the package is downloaded
+CURRENT_TIME=`date "+%k:%M"`
+CURRENT_TIME_PLUS_THIRTY_MINUTES=`date "+%k:%M" -d "+30 minutes"`
+while [ ! -e VMware* ]
+do
+	# Exits the loop if the package cannot be downloaded in 30 minutes
+	CURRENT_TIME=`date "+%k:%M"`
+	if [ $CURRENT_TIME = $CURRENT_TIME_PLUS_THIRTY_MINUTES ]
+	then
+		echo -e "the package cannot be downloaded in 30 minutes.\nexecution stopped."
+		exit 2
+	fi
+done
+sudo killall chrome
+
+# Enables the bundle package to be executed
+chmod +x VMware*
+# Executes the bundle package
+sudo ./VMware* --console --eulas-agreed --required
+
+# Displays license keys
+echo -e "license key:"
+echo FF35R-DLX13-48DRZ-66M5V-XQ294
+echo VY5DH-D0GE0-0814Z-AXZGT-Y3UA6
+echo AV102-05Y9H-M89MQ-5ZN79-MZHR4
+
+# Opens vmware and fills in the license key
+vmware
+
+# Removes the package if vmware is successfully installed
+if [ $? -eq 0 ]
+then
+	# Removes the bundle package
+	rm VMware*
+fi
