@@ -1,6 +1,10 @@
 #!/bin/bash
 
-baidu_net_disk_url=http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.deb
-wget -P /home/*/Downloads $baidu_net_disk_url
-baidu_net_disk_deb_name=${baidu_net_disk_url##*/}
-sudo dpkg -i /home/*/Downloads/"$baidu_net_disk_deb_name"
+# Enters /Downloads
+cd /home/*/Downloads
+
+# Downloads the package
+wget http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.deb
+
+# Installation
+sudo dpkg -i baidunetdisk*
