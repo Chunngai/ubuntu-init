@@ -2,6 +2,9 @@
 
 . ./log_append
 
+# Exits if baidu netdisk has been downloaded
+dpkg -l | grep baidunetdisk && exit 0
+
 DIR=`pwd`
 
 # Downloads the package

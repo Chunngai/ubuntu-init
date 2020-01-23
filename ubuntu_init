@@ -26,7 +26,7 @@ log_append ""
 # Installs services and software
 sh install_git
 sh install_vim
-sh install_make
+# sh install_make  # not needed for ubuntu19.10
 sh install_pip3
 sh install_ffmpeg
 

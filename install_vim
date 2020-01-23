@@ -2,6 +2,9 @@
 
 . ./log_append
 
+# Removes some vim components (needed for ubuntu >= 19.10)
+sudo apt-get remove -y --purge vim-common vim-tiny
+
 # Installs vim
 sudo apt-get -y install vim
 

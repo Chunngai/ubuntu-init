@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Exits if onedrive has been installed
+onedrive --version > /dev/null && exit 0
+
+DIR=`pwd`
+
 # Installs necessary dependencies
 cd /opt
 sudo apt -y install libcurl4-openssl-dev libsqlite3-dev
@@ -12,6 +17,8 @@ cd onedrive
 # Compiles
 sudo make
 sudo make install
+
+cd $DIR
 
 # Initializes onedrive
 echo -e "\a"

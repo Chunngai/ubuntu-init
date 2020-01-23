@@ -3,6 +3,7 @@
 . ./log_append
 
 pip3_install() {
+	python3 -c "import $2" && return 0
 	pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ $1
 	python3 -c "import $2" && log_append "$1 installed" || log_append "failed to install $1"
 }

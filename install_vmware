@@ -2,6 +2,9 @@
 
 . ./log_append
 
+# Exits if vmware has been installed
+vmware --version > /dev/null && exit 0
+
 DIR=`pwd`
 
 # Downloads the vmware package
