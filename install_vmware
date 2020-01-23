@@ -16,6 +16,7 @@ echo VY5DH-D0GE0-0814Z-AXZGT-Y3UA6
 echo AV102-05Y9H-M89MQ-5ZN79-MZHR4
 
 # Opens vmware and fills in the license key
+echo -e "\a"
 vmware
 
 # Removes the package if vmware is successfully installed

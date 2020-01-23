@@ -35,6 +35,10 @@ sh install_baidu_net_disk
 sh install_pycharm
 sh install_vmware
 sh install_onedrive
+# onedrive: Automatic update
+systemctl --user enable onedrive
+systemctl --user start onedrive
+[ $? -eq 0 ] && echo "onedrive installed" >> $LOG || echo "failed to install onedrive" >> $LOG
 
 echo "" >> $LOG
 
