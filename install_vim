@@ -1,5 +1,8 @@
 #!/bin/bash
 
+. ./log_append
+
+# Installs vim
 sudo apt-get -y install vim
 
-vim --version > /dev/null && echo "vim installed" >> $LOG || echo "failed to install vim" >> $LOG
+vim --version > /dev/null && log_append "vim installed" || log_append "failed to install vim"

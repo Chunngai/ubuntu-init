@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Enters /opt
-cd /opt
-
 # Installs necessary dependencies
+cd /opt
 sudo apt -y install libcurl4-openssl-dev libsqlite3-dev
 sudo snap install --classic dmd && sudo snap install --classic dub
 
@@ -15,6 +13,6 @@ cd onedrive
 sudo make
 sudo make install
 
-# Initialization
+# Initializes onedrive
 echo -e "\a"
 onedrive

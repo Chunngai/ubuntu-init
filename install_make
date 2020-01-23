@@ -1,5 +1,8 @@
 #!/bin/bash
 
+. ./log_append
+
+# Installs make
 sudo apt-get -y install make
 
-make --version > /dev/null && echo "make installed" >> $LOG || echo "failed to install make" >> $LOG
+make --version > /dev/null && log_append "make installed" || log_append "failed to install make"

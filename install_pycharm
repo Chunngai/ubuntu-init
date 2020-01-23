@@ -1,8 +1,12 @@
 #!/bin/bash
 
+. ./log_append
+
+DIR=`pwd`
+
 # Downloads the pycharm package
-cd /home/*/Downloads
-sudo wget https://download.jetbrains.8686c.com/python/pycharm-community-2019.3.1.tar.gz
+cd /home/`whoami`/Downloads
+wget https://download.jetbrains.8686c.com/python/pycharm-community-2019.3.1.tar.gz
 # Extracts files to /opt
 sudo tar -zxvf pycharm-community*tar* -C /opt
 
@@ -26,6 +30,8 @@ Terminal=false
 StartupWMClass=jetbrains-pycharm-ce" >> jetbrains-pycharm-ce.desktop
 
 # Removes the package if pycharm is successfully installed
-[ $? -eq 0 ] && rm -f /home/*/Downloads/pycharm*
+[ $? -eq 0 ] && rm -f /home/`whoami`/Downloads/pycharm*
 
-[ $? -eq 0 ] && echo "pycharm installed" >> $LOG || echo "failed to install pycharm" >> $LOG
+cd $DIR
+
+[ $? -eq 0 ] && log_append "pycharm installed" || log_append "failed to install pycharm"

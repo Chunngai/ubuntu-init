@@ -1,11 +1,13 @@
 #!/bin/bash
 
+. ./log_append
+
 # Adds the repo
 echo "" | wget -qO - https://packagecloud.io/AtomEditor/atom/gpgkey | sudo apt-key add -
 sudo sh -c 'echo "deb [arch=amd64] https://packagecloud.io/AtomEditor/atom/any/ any main" > /etc/apt/sources.list.d/atom.list'
 sudo apt-get update
 
-# Installation
+# Installs atom
 sudo apt-get -y install atom
 
-atom --version > dev/null && echo "atom installed" >> $LOG || echo "failed to install atom" >> $LOG
+atom --version > /dev/null && log_append "atom installed" || log_append "failed to install atom"

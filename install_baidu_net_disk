@@ -1,15 +1,19 @@
 #!/bin/bash
 
-# Enters /Downloads
-cd /home/*/Downloads
+. ./log_append
+
+DIR=`pwd`
 
 # Downloads the package
+cd /home/`whoami`/Downloads
 wget http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.deb
 
-# Installation
+# Installs baidu netdisk
 sudo dpkg -i baidunetdisk*
 
 # Removes the package if baidu netdisk is successfully installed
-dpkg -l | grep baidunetdisk && rm -f /home/*/Downloads/baidunetdisk*
+dpkg -l | grep baidunetdisk && rm -f baidunetdisk*
 
-[ $? -eq 0 ] && echo "baidu net disk installed" >> $LOG || echo "failed to install baidu net disk" >> $LOG
+cd $DIR
+
+[ $? -eq 0 ] && log_append "baidu net disk installed" || log_append "failed to install baidu net disk"

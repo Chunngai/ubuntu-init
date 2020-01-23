@@ -1,11 +1,13 @@
 #!/bin/bash
 
+. ./log_append
+
 # Adds the repo
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
 sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
 sudo apt-get update
 
-# Installation
+# Installs chrome
 sudo apt-get -y install google-chrome-stable
 
-google-chrome-stable --version && echo "chrome installed" >> $LOG || echo "failed to install chrome" >> $LOG
+google-chrome-stable --version && log_append "chrome installed" || log_append "failed to install chrome"

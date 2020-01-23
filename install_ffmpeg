@@ -1,5 +1,8 @@
 #!/bin/bash
 
+. ./log_append
+
+# Installs ffmpeg
 sudo apt-get -y install ffmpeg
 
-ffmpeg --version > /dev/null && echo "ffmpeg installed" >> $LOG || echo "failed to install ffmpeg" >> $LOG
+ffmpeg -version > /dev/null && log_append "ffmpeg installed" || log_append "failed to install ffmpeg"

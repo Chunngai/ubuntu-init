@@ -1,11 +1,13 @@
 #!/bin/bash
 
+. ./log_append
+
 # Adds the repo
 wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
 sudo add-apt-repository 'deb https://typora.io/linux ./'
 sudo apt-get update
 
-# Installation
+# Installs typora
 sudo apt-get -y install typora
 
-dpkg -l | grep typora && echo "typora installed" >> $LOG || echo "failed to install typora" >> $LOG
+dpkg -l | grep typora && log_append "typora installed" || log_append "failed to install typora"

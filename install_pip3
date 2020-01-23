@@ -1,5 +1,8 @@
 #!/bin/bash
 
+. ./log_append
+
+# Installs pip3
 sudo apt-get -y install python3-pip
 
-pip3 --version > /dev/null && echo "pip3 installed" >> $LOG || echo "failed to install pip3" >> $LOG
+pip3 --version > /dev/null && log_append "pip3 installed" || log_append "failed to install pip3"
