@@ -1,3 +1,5 @@
 #!/bin/bash
 
 sudo apt-get -y install make
+
+make --version > /dev/null && echo "make installed" >> $LOG || echo "failed to install make" >> $LOG

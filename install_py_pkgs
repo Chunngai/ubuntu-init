@@ -1,12 +1,63 @@
 #!/bin/bash
 
-sudo pip3 install --upgrade pip
+# sudo pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ numpy matplotlib pandas scipy scikit-learn jupyter opencv-python baidu-aip
+# sudo pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ bs4 selenium lxml
+# sudo pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ itchat pyperclip pdfkit pdf2image
 
-sudo pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ tensorflow
-sudo pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ numpy matplotlib pandas scipy scikit-learn jupyter opencv-python baidu-aip
-sudo pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ bs4 selenium  
-sudo pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ itchat pyperclip pdfkit
+# python3 -c "import numpy, matplotlib, pandas, scipy, sklearn, jupyter, bs4, selenium, itchat, pyperclip, cv2, pdfkit, aip, pdf2image, lxml"
 
-python3 -c "import numpy, matplotlib, pandas, scipy, sklearn, jupyter, bs4, selenium, itchat, pyperclip, cv2, pdfkit, aip"
 
-# tensorflow: 3.6 when python is 3.8 it is unable to be installed
+
+
+
+
+
+pip3_install() {
+	pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ $1
+	python3 -c "import $2" && echo "$2 installed" >> $LOG || echo "failed to install $2" >> $LOG
+}
+
+# tensorflow
+pip3_install tensorflow tensorflow
+
+# numpy
+pip3_install numpy numpy
+
+# matplotlib
+pip3_install matplotlib matplotlib
+
+# pandas
+pip3_install pandas pandas
+
+# scipy
+pip3_install scipy scipy
+
+# scikit-learn
+pip3_install scikit-learn sklearn
+
+# jupyter
+pip3_install jupyter jupyter
+
+# opencv
+pip3_install opencv-python cv2
+
+# baidu-aip
+pip3_install baidu-aip aip
+
+# bs4
+pip3_install bs4 bs4
+
+# selenium
+pip3_install selenium selenium
+
+# lxml
+pip3_install lxml lxml
+
+# itchat
+pip3_install itchat itchat
+
+# pdf2image
+pip3_install pdf2image pdf2image
+
+# tkinter
+sudo apt-get install -y python3-tk

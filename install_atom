@@ -8,3 +8,4 @@ sudo apt-get update
 # Installation
 sudo apt-get -y install atom
 
+atom --version > dev/null && echo "atom installed" >> $LOG || echo "failed to install atom" >> $LOG

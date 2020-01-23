@@ -1,11 +1,16 @@
 #!/bin/bash
 
-cd /opt
+# Downloads the pycharm package
+cd /home/*/Downloads
 sudo wget https://download.jetbrains.8686c.com/python/pycharm-community-2019.3.1.tar.gz
-sudo tar -zxvf pycharm-community*tar*
-sudo rm -f pycharm-community*tar.gz
-cd pycharm-community*/bin
-sh ./pycharm.sh
+# Extracts files to /opt
+sudo tar -zxvf pycharm-community*tar* -C /opt
+
+# Installs pycharm
+cd /opt/pycharm-community*/bin
+sudo ./pycharm.sh
+
+# Makes the icon be able to be added to favorites
 cd /usr/share/applications
 sudo touch jetbrains-pycharm-ce.desktop
 sudo chmod 777 jetbrains-pycharm-ce.desktop
@@ -19,3 +24,8 @@ Comment=Python IDE for Professional Developers
 Categories=Development;IDE;
 Terminal=false
 StartupWMClass=jetbrains-pycharm-ce" >> jetbrains-pycharm-ce.desktop
+
+# Removes the package if pycharm is successfully installed
+[ $? -eq 0 ] && rm -f /home/*/Downloads/pycharm*
+
+[ $? -eq 0 ] && echo "pycharm installed" >> $LOG || echo "failed to install pycharm" >> $LOG

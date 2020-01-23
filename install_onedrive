@@ -1,12 +1,25 @@
 #!/bin/bash
 
-sudo apt -y install libcurl4-openssl-dev
-sudo apt -y install libsqlite3-dev
+# Enters /opt
+cd /opt
+
+# Installs necessary dependencies
+sudo apt -y install libcurl4-openssl-dev libsqlite3-dev
 sudo snap install --classic dmd && sudo snap install --classic dub
-git clone https://github.com/skilion/onedrive.git
+
+# Clones the repo
+sudo git clone https://github.com/skilion/onedrive.git
 cd onedrive
-make
+
+# Compiles
+sudo make
 sudo make install
-onedrive
+
+# Automatic update
 systemctl --user enable onedrive
 systemctl --user start onedrive
+
+[ $? -eq 0 ] && echo "onedrive installed" >> $LOG || echo "failed to install onedrive" >> $LOG
+
+# Initialization
+onedrive

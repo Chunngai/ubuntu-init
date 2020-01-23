@@ -18,3 +18,5 @@ read -p "press any key to continue: "
 
 # Changes the default editor from nano to vim
 git config --global core.editor vim
+
+git --version > /dev/null && echo "git installed" >> $LOG || echo "failed to install git" >> $LOG

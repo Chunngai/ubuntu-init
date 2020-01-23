@@ -8,3 +8,8 @@ wget http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_
 
 # Installation
 sudo dpkg -i baidunetdisk*
+
+# Removes the package if baidu netdisk is successfully installed
+dpkg -l | grep baidunetdisk && rm -f /home/*/Downloads/baidunetdisk*
+
+[ $? -eq 0 ] && echo "baidu net disk installed" >> $LOG || echo "failed to install baidu net disk" >> $LOG

@@ -1,48 +1,42 @@
 #!/bin/bash
 
+# Creates a log
+LOG="ubuntu_init_"`date`".log"
+touch $LOG
+
 # dash -> bash
-sudo dpkg-reconfigure dash
+sudo dpkg-reconfigure dash && echo "dash -> bash done" >> $LOG || echo "dash -> bash failed" >> $LOG
+echo "" >> $LOG
 
 # Removes games
-sudo apt-get -y --purge remove aisleriot gnome-mahjongg gnome-mines gnome-sudoku libgnome-games-support-1-3:amd64 libgnome-games-support-common
+sudo apt-get -y --purge remove aisleriot gnome-mahjongg gnome-mines gnome-sudoku libgnome-games-support-1-3:amd64 libgnome-games-support-common && echo "games removed" >> $LOG || echo "failed to remove games" >> $LOG
+echo "" >> $LOG
 
 # Changes the sources
 sudo cp /etc/apt/sources.list /etc/apt/sources.list.bcakup
 sudo sh -c "cat sources > /etc/apt/sources.list"
 sudo apt-get update
 sudo apt-get -y upgrade
+[ $? -eq 0 ] && echo "sources changed" >> $LOG || echo "failed to change sources" >> $LOG
+echo "" >> $LOG
 
+# Installs services and software
+sh install_git
+sh install_vim
+sh install_make
+sh install_pip3
+sh install_ffmpeg
 
+sh install_atom
+sh install_chrome
+sh install_typora
 
+sh install_baidu_net_disk
+sh install_pycharm
+sh install_vmware
+sh install_onedrive
 
+echo "" >> $LOG
 
-
-
-
-
-
-
-
-
-
-
-f() {
-script_list_1=(install_vim install_pip3 install_git install_make)
-for i in ${script_list_1[@]}
-do
-{
- 	sh $i 2> $i"_err" && echo "$i done" >> install_log
-
-}
-done
-
-sudo apt-get update
-
-script_list_2=(install_chrome install_baidu_net_disk install_pycharm install_atom install_onedrive)
-for i in ${script_list_2[@]}
-do
-{
-	sh $i 2> $i"_err" && echo "$i done" >> install_log
-}
-done
-}
+# Installs python packages
+sh install_py_pkgs

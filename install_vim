@@ -1,3 +1,5 @@
 #!/bin/bash
 
 sudo apt-get -y install vim
+
+vim --version > /dev/null && echo "vim installed" >> $LOG || echo "failed to install vim" >> $LOG

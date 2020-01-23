@@ -8,3 +8,4 @@ sudo apt-get update
 # Installation
 sudo apt-get -y install typora
 
+dpkg -l | grep typora && echo "typora installed" >> $LOG || echo "failed to install typora" >> $LOG
