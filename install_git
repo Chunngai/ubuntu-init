@@ -1,3 +1,20 @@
 #!/bin/bash
 
 sudo apt-get -y install git
+
+# Configuration
+echo -e "\a"
+read -p "input the user name of github: " USER_NAME	
+read -p "input the email of github: " USER_EMAIL	
+git config --global user.name $USER_NAME
+git config --global user.email $USER_EMAIL
+
+# Generates a ssh key
+cd ~/.ssh
+echo "" | ssh-keygen -t rsa -C $USER_EMAIL
+echo -e "\a"
+cat id_rsa.pub
+read -p "press any key to continue: "
+
+# Changes the default editor from nano to vim
+git config --global core.editor vim
