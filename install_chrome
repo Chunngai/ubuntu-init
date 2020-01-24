@@ -1,6 +1,9 @@
 #!/bin/bash
 
-. ./log_append
+. ./common_funcs
+
+# Exits if chrome has been installed
+google-chrome-stable --version &> /dev/null && check_installed "chrome"
 
 # Adds the repo
 wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -
@@ -10,4 +13,7 @@ sudo apt-get update
 # Installs chrome
 sudo apt-get -y install google-chrome-stable
 
-google-chrome-stable --version && log_append "chrome installed" || log_append "failed to install chrome"
+# Modifies google-chrome.list in /etc/apt/sources.list.d to avoid repeated configuration
+sudo cp google-chrome.list /etc/apt/sources.list.d/google-chrome.list
+
+google-chrome-stable --version &> /dev/null && log_append "chrome installed" || log_append "failed to install chrome"

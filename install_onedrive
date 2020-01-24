@@ -1,25 +1,38 @@
 #!/bin/bash
 
+. ./common_funcs
+
 # Exits if onedrive has been installed
-onedrive --version > /dev/null && exit 0
+onedrive --version &> /dev/null && check_installed "onedrive"
 
 DIR=`pwd`
 
-# Installs necessary dependencies
+# Installs dlang
+sudo curl -fsS https://dlang.org/install.sh | bash -s dmd
+sudo mv ~/dlang /opt
+
 cd /opt
-sudo apt -y install libcurl4-openssl-dev libsqlite3-dev
-sudo snap install --classic dmd && sudo snap install --classic dub
+
+# Activates DMD
+source dlang/dmd-*/activate
 
 # Clones the repo
-sudo git clone https://github.com/skilion/onedrive.git
+sudo git clone https://github.com/abraunegg/onedrive.git
 cd onedrive
 
-# Compiles
+# Installs onedrive
+sudo ./configure
+sudo make clean
 sudo make
 sudo make install
 
+# Deactivates DMD
+deactivate
+
+# Automatic update
+systemctl --user enable onedrive
+systemctl --user start onedrive
+
 cd $DIR
 
-# Initializes onedrive
-echo -e "\a"
-onedrive
+onedrive --version &> /dev/null && log_append "onedrive installed" || log_append "failed to install onedrive"

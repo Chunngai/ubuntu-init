@@ -1,14 +1,14 @@
 #!/bin/bash
 
-. ./log_append
+. ./common_funcs
 
 # Exits if vmware has been installed
-vmware --version > /dev/null && exit 0
+vmware --version &> /dev/null && check_installed "vmware"
 
 DIR=`pwd`
 
 # Downloads the vmware package
-cd /home/`whoami`/Downloads
+cd ~/Downloads
 wget https://download3.vmware.com/software/wkst/file/VMware-Workstation-Full-15.5.1-15018445.x86_64.bundle
 
 # Enables the bundle package to be executed
@@ -21,4 +21,4 @@ sudo ./VMware* --console --eulas-agreed --required
 
 cd $DIR
 
-[ $? -eq 0 ] && log-append "vmware installed" || log_append "failed to install pycharm"
+vmware --version &> /dev/null && log-append "vmware installed" || log_append "failed to install pycharm"

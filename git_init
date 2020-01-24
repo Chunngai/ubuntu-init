@@ -1,0 +1,29 @@
+#!/bin/bash
+
+. ./common_funcs
+
+# Gets info of git
+echo -e "\a"
+read -p "input the user name of github: " USER_NAME
+read -p "input the email of github: " USER_EMAIL
+
+# Configuration
+git config --global user.name $USER_NAME
+git config --global user.email $USER_EMAIL
+
+[ $? -eq 0 ] && log_append "git account configured" || log_append "failed to configure git account"
+
+# Changes the default editor from nano to vim
+git config --global core.editor vim && log_append "default editor of git -> vim done" || log_append "failed to change the default editor of git to vim"
+
+# Generates a ssh key
+ssh -T git@github.com
+cd ~/.ssh
+echo "" | ssh-keygen -t rsa -C $USER_EMAIL
+cat ~/.ssh/id_rsa.pub
+
+[ $? -eq 0 ] && log_append "ssh key of git generated" || log_append "failed to generate an ssh key"
+
+echo -e "\a"
+read -p "press any key to continue" TMP
+

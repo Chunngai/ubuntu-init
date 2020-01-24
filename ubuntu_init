@@ -1,11 +1,12 @@
 #!/bin/bash
 
-. ./log_append
+. ./common_funcs
 
 # Creates a log
 LOG="ubuntu_init_"`date "+%m-%d"`".log"
 touch $LOG
-sudo chmod +x log_append
+
+log_append "---"
 
 # dash -> bash
 sudo dpkg-reconfigure dash && log_append "dash -> bash done" || log_append "dash -> bash failed"
@@ -15,9 +16,17 @@ log_append ""
 sudo apt-get -y --purge remove aisleriot gnome-mahjongg gnome-mines gnome-sudoku libgnome-games-support-1-3:amd64 libgnome-games-support-common && log_append "games removed" || log_append "failed to remove games"
 log_append ""
 
+# Installs necessary dependencies for onedrive using ubuntu's sources
+sudo apt install -y build-essential
+sudo apt install -y libcurl4-openssl-dev
+sudo apt install -y libsqlite3-dev
+sudo apt install -y pkg-config
+sudo apt install -y curl
+
 # Changes the sources
-sudo cp /etc/apt/sources.list /etc/apt/sources.list.bcakup
-sudo sh -c "cat sources > /etc/apt/sources.list"
+sudo cp sources.list.aliyun-tuna /etc/apt/sources.list.aliyun-tuna
+sudo cp /etc/apt/sources.list /etc/apt/sources.list.ubuntu
+sudo sh -c "cat sources.list.aliyun-tuna > /etc/apt/sources.list"
 sudo apt-get update
 sudo apt-get -y upgrade
 [ $? -eq 0 ] && log_append "sources changed" || log_append "failed to change sources"
@@ -35,22 +44,24 @@ sh install_chrome
 sh install_typora
 
 sh install_baidu_net_disk
-sh install_vmware
+# sh install_vmware
 sh install_pycharm
 sh install_onedrive
-# onedrive: Automatic update
-systemctl --user enable onedrive
-systemctl --user start onedrive
-[ $? -eq 0 ] && log_append "onedrive installed" || log_append "failed to install onedrive"
 
 log_append ""
 
 # Creates a soft link for Bookmarks of chrome
-ln -s /home/`whoami`/.config/google-chrome/Default/Bookmarks "/home/"`whoami`"/OneDrive/Chrome bookmarks/ubuntu_bookmark/Bookmarks" && log_append "created a soft link for the bookmark of chrome" || log_append "failed to create a soft link for the bookmark of chrome"
-log_append ""
+# ln -s /home/`whoami`/.config/google-chrome/Default/Bookmarks "/home/"`whoami`"/OneDrive/Chrome bookmarks/ubuntu_bookmark/Bookmarks" && log_append "created a soft link for the bookmark of chrome" || log_append "failed to create a soft link for the bookmark of chrome"
+# log_append ""
 
 # Installs python packages
 sh install_py_pkgs
+log_append ""
 
-# Displays the ssh key
-cat ~/.ssh/id_rsa.pub
+# Initializes git
+sh git_init
+
+# Initializes onedrive
+echo -e "\a"
+onedrive --synchronize
+

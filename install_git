@@ -1,24 +1,11 @@
 #!/bin/bash
 
-. ./log_append
+. ./common_funcs
 
-# Gets info of git
-echo -e "\a"
-read -p "input the user name of github: " GIT_USER_NAME
-read -p "input the email of github: " GIT_USER_EMAIL
+# Exits if git has been installed
+git --version &> /dev/null && check_installed "git"
 
 # Installs ffmpeg
 sudo apt-get -y install git
 
-# Configuration
-git config --global user.name $USER_NAME
-git config --global user.email $USER_EMAIL
-
-# Generates a ssh key
-cd ~/.ssh
-echo "" | ssh-keygen -t rsa -C $USER_EMAIL
-
-# Changes the default editor from nano to vim
-git config --global core.editor vim
-
-git --version > /dev/null && log_append "git installed" || log_append "failed to install git"
+git --version &> /dev/null && log_append "git installed" || log_append "failed to install git"

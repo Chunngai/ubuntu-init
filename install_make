@@ -1,8 +1,11 @@
 #!/bin/bash
 
-. ./log_append
+. ./common_funcs
+
+# Exits if make has been installed
+make --version &> /dev/null && check_installed "make"
 
 # Installs make
 sudo apt-get -y install make
 
-make --version > /dev/null && log_append "make installed" || log_append "failed to install make"
+make --version &> /dev/null && log_append "make installed" || log_append "failed to install make"

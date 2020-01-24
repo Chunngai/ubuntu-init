@@ -1,8 +1,11 @@
 #!/bin/bash
 
-. ./log_append
+. ./common_funcs
+
+# Exits if pip3 has been installed
+pip3 --version &> /dev/null && check_installed "pip3"
 
 # Installs pip3
 sudo apt-get -y install python3-pip
 
-pip3 --version > /dev/null && log_append "pip3 installed" || log_append "failed to install pip3"
+pip3 --version &> /dev/null && log_append "pip3 installed" || log_append "failed to install pip3"

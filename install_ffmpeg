@@ -1,8 +1,11 @@
 #!/bin/bash
 
-. ./log_append
+. ./common_funcs
+
+# Exits if ffmpeg has been installed
+ffmpeg -version &> /dev/null && check_installed "ffmpeg"
 
 # Installs ffmpeg
 sudo apt-get -y install ffmpeg
 
-ffmpeg -version > /dev/null && log_append "ffmpeg installed" || log_append "failed to install ffmpeg"
+ffmpeg -version &> /dev/null && log_append "ffmpeg installed" || log_append "failed to install ffmpeg"

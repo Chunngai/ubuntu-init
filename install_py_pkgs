@@ -1,9 +1,14 @@
 #!/bin/bash
 
-. ./log_append
+. ./common_funcs
 
 pip3_install() {
-	python3 -c "import $2" && return 0
+	python3 -c "import $2" &> /dev/null 
+	if [ $? -eq 0 ]
+	then
+		log_append "$1 has been installed"
+		return 0
+	fi
 	pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ $1
 	python3 -c "import $2" && log_append "$1 installed" || log_append "failed to install $1"
 }
@@ -51,5 +56,11 @@ pip3_install itchat itchat
 pip3_install pdf2image pdf2image
 
 # tkinter
+python3 -c "import tkinter"
+if [ $? -eq 0 ]
+then
+	log_append "tkinter has been installed"
+	exit 0
+fi
 sudo apt-get install -y python3-tk
 python3 -c "import tkinter" && log_append "tkinter installed" || log_append "failed to install tkinter"
