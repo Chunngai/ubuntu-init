@@ -55,6 +55,9 @@ pip3_install itchat itchat
 # pdf2image
 pip3_install pdf2image pdf2image
 
+# nltk
+pip3_install nltk nltk
+
 # tkinter
 python3 -c "import tkinter"
 if [ $? -eq 0 ]
