@@ -1,7 +1,0 @@
-#!/bin/bash
-
-LOG="ubuntu_init_"`date "+%m-%d"`".log"
-
-log_append() {
-	echo $1 >> $LOG
-}
