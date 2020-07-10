@@ -14,7 +14,7 @@ pip3_install() {
 }
 
 # tensorflow
-pip3_install tensorflow tensorflow
+# pip3_install tensorflow tensorflow
 
 # numpy
 pip3_install numpy numpy
@@ -26,13 +26,16 @@ pip3_install matplotlib matplotlib
 pip3_install pandas pandas
 
 # scipy
-pip3_install scipy scipy
+# pip3_install scipy scipy
 
 # scikit-learn
-pip3_install scikit-learn sklearn
+# pip3_install scikit-learn sklearn
 
 # jupyter
-pip3_install jupyter jupyter
+# pip3_install jupyter jupyter
+
+# jupyter lab
+pip3_install jupyterlab jupyterlab
 
 # opencv
 pip3_install opencv-python cv2
@@ -57,6 +60,15 @@ pip3_install pdf2image pdf2image
 
 # nltk
 pip3_install nltk nltk
+
+# pytorch
+pip3_install torch torch
+
+# torchtext
+pip3_install torchtext torchtext
+
+# torchvision
+pip3_install torchvision torchvision
 
 # tkinter
 python3 -c "import tkinter"
