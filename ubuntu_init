@@ -3,7 +3,7 @@
 . ./common_funcs
 
 # Creates a log
-LOG="ubuntu_init_"`date "+%m-%d"`".log"
+LOG="logs/ubuntu_init_"`date "+%m-%d"`".log"
 touch $LOG
 
 log_append "---"
