@@ -18,6 +18,22 @@ Your public key has been saved in /home/neko/.ssh/id_rsa.pub.
 2.
 [ $? -eq 0 ] && log_append "ssh key of git generated" || log_append "failed to generate an ssh key"  # this statement does not work?
 
+
+3. 
+echo statement in common_funcs: check_installed() does not work
+
+
+
+
+
+
+
+
+
+
+
+
+
 install_onedrive:
 onedrive don't mv dlang and onedrive to opt
 

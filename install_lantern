@@ -1,0 +1,14 @@
+#!/bin/bash
+
+. ./common_funcs
+
+# Exits if lantern has been installed.
+dpkg -l | grep lantern &> /dev/null && check_installed "lantern"
+
+# Downloads the pkg
+wget https://bitbucket.org/getlantern/lantern-binaries/raw/master/lantern-installer-64-bit.deb
+
+# Installs
+sudo dpkg -i lantern*deb
+
+dpkg -l | grep lantern &> /dev/null && log_append "lantern installed"; sudo rm lantern*deb || log_append "failed to install lantern"

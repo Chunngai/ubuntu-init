@@ -44,9 +44,10 @@ sh install_chrome
 sh install_typora
 
 sh install_baidu_net_disk
-# sh install_vmware
+sh install_vmware
 sh install_pycharm
 sh install_onedrive
+sh install_lantern
 
 log_append ""
 
