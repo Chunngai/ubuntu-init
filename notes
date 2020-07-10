@@ -1,0 +1,36 @@
+git_init:
+1. 
+input the user name of github:
+input the email of github:
+The authenticity of host 'github.com ()' can't be established.
+RSA key fingerprint is SHA256:.
+
+# needs to press Enter?
+Are you sure you want to continue connecting (yes/no/[fingerprint])? 
+
+Host key verification failed.
+Generating public/private rsa key pair.
+Enter file in which to save the key (/home/neko/.ssh/id_rsa): ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+ssh_askpass: exec(/usr/bin/ssh-askpass): No such file or directory
+Your identification has been saved in /home/neko/.ssh/id_rsa.
+Your public key has been saved in /home/neko/.ssh/id_rsa.pub.
+
+2.
+[ $? -eq 0 ] && log_append "ssh key of git generated" || log_append "failed to generate an ssh key"  # this statement does not work?
+
+
+
+
+
+
+
+install_onedrive:
+onedrive don't mv dlang and onedrive to opt
+
+onedrive:
+1.
+init bookmark: onedrive -> chrome dir from backup
+then chrome dir -> onedrive bookmark dir 
+
+2.
+cp all files from win to ubuntu
