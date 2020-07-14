@@ -14,7 +14,7 @@ echo "" | sudo add-apt-repository ppa:yann1ck/onedrive
 sudo apt-get update
 
 # Installs onedrive.
-sudo apt-get install onedrive
+sudo apt-get -y install onedrive
 
 # Authorization.
 echo -e "\a"
