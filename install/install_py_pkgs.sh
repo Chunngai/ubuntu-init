@@ -1,6 +1,11 @@
 #!/bin/bash
 
+set -e
+set -x
+
 pkgs=(
+	setuptools
+
 	numpy
 	matplotlib
 	pandas
@@ -17,7 +22,7 @@ pkgs=(
 	lxml
 
 	itchat
-	pdf2img
+	pdf2image
 
 	#scipy
 	#scikit-learn
@@ -28,7 +33,7 @@ pkgs=(
 
 for pkg in ${pkgs[@]}
 do
-	pip3 install --default-timeout 60 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ $pkg
+	pip3 install --timeout 180 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ $pkg
 done
 
 sudo apt-get install -y python3-tk
