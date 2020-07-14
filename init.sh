@@ -31,7 +31,7 @@ sudo apt-get update
 sudo apt-get -y upgrade
 
 # Installs vim.
-# sudo apt-get remove -y --purge vim-common vim-tiny
+sudo apt-get remove -y --purge vim-common vim-tiny
 sudo apt-get -y install vim
 # Installs pip3.
 sudo apt-get -y install python3-pip
