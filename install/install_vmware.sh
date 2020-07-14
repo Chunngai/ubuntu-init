@@ -4,7 +4,7 @@ set -e
 set -x
 
 # Exits if vmware has been installed.
-if type lantern > /dev/null 2>&1
+if type vmware > /dev/null 2>&1
 then
 	exit
 fi
@@ -33,6 +33,7 @@ done
 if [ ! $TAR_BALL ]
 then
 	echo "pkg needed!"
+	echo "visit https://my.vmware.com/cn/web/vmware/downloads/info/slug/desktop_end_user_computing/vmware_workstation_pro/15_0 to get a pkg"
 	exit
 fi
 
@@ -41,6 +42,12 @@ chmod +x VMware*
 sudo ./VMware* --console --eulas-agreed --required
 
 # Displays license keys.
-cat ../vmware_license_key
+if [ -f ../vmware_license_key ] 
+then
+	cat ../vmware_license_key
+fi
+
+echo -e "\a"
+vmware
 
 whereis vmware
