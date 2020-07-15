@@ -1,4 +1,2 @@
 I. install_py_pkgs.sh
 > /dev/null does not work.
-
-II. Check install/* in both init.sh & install_*.sh
