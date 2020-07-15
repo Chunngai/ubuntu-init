@@ -33,7 +33,13 @@ pkgs=(
 
 for pkg in ${pkgs[@]}
 do
-	pip3 install --timeout 180 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ $pkg
+	if ! `python3 -c "import $pkg"` > /dev/null
+	then
+		pip3 install --timeout 180 --upgrade -i https://pypi.tuna.tsinghua.edu.cn/simple/ $pkg
+	fi
 done
 
-sudo apt-get install -y python3-tk
+if ! `python3 -c "import tkinter"` > /dev/null
+then
+	sudo apt-get install -y python3-tk
+fi
