@@ -42,9 +42,10 @@ chmod +x VMware*
 sudo ./VMware* --console --eulas-agreed --required
 
 # Displays license keys.
-if [ -f ../vmware_license_key ] 
+BASE_PATH=$(cd `dirname $0`; pwd)
+if [ -f $BASE_PATH/support/vmware_license_key ] 
 then
-	cat ../vmware_license_key
+	cat $BASE_PATH/support/vmware_license_key
 fi
 
 echo -e "\a"
