@@ -32,9 +32,8 @@ done
 # Downloads a pkg if no pkg is provided.
 if [ ! $TAR_BALL ]
 then
-	TAR_BALL=pycharm-community*tar*
-	cd ~/Downloads
-	wget https://download.jetbrains.8686c.com/python/pycharm-community-2019.3.1.tar.gz
+	TAR_BALL=~/Downloads/pycharm-community*tar*
+	wget https://download.jetbrains.8686c.com/python/pycharm-community-2019.3.1.tar.gz -P ~/Downloads
 fi
 
 # Expands the tar ball and moves it to /opt.
