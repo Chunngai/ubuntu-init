@@ -32,9 +32,8 @@ done
 # Downloads a pkg if no pkg is provided.
 if [ ! $TAR_BALL ]
 then
-	TAR_BALL=lantern*deb
-	cd ~/Downloads
-	wget https://bitbucket.org/getlantern/lantern-binaries/raw/master/lantern-installer-64-bit.deb	
+	TAR_BALL=~/Downloads/lantern*deb
+	wget https://bitbucket.org/getlantern/lantern-binaries/raw/master/lantern-installer-64-bit.deb -P ~/Downloads
 fi
 
 # Installation.

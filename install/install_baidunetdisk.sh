@@ -32,9 +32,8 @@ done
 # Downloads a pkg if no pkg is provided.
 if [ ! $TAR_BALL ]
 then
-	TAR_BALL=baidunetdisk*deb
-	cd ~/Downloads
-	wget http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.deb
+	TAR_BALL=~/Downloads/baidunetdisk*deb
+	wget http://issuecdn.baidupcs.com/issue/netdisk/LinuxGuanjia/3.0.1/baidunetdisk_linux_3.0.1.2.deb -P ~/Downloads
 fi
 
 # Installation.
