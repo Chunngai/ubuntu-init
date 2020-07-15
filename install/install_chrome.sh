@@ -18,7 +18,8 @@ sudo apt-get update
 sudo apt-get -y install google-chrome-stable
 
 # Modifies google-chrome.list in /etc/apt/sources.list.d to avoid repeated configuration.
-sudo cp google-chrome.list /etc/apt/sources.list.d/google-chrome.list
+BASE_PATH=$(cd `dirname $0`; pwd)
+sudo cp $BASE_PATH/support/google-chrome.list /etc/apt/sources.list.d/google-chrome.list
 
 # Copies the bookmark to ~/.config/google-chrome/Default/, if provided.
 eval set -- $(getopt -o b: -- "$@")
