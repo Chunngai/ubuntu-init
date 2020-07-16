@@ -9,7 +9,7 @@ then
 	exit
 fi
 
-# Moves the pkg to `pwd`.
+# Moves the pkg to `pwd` if one is provided.
 eval set -- $(getopt -o f: -- "$@")  # eval is needed or `basename $TAR_BALL` will leave a single quote at the end of the file name.
 
 while [ -n $1 ]

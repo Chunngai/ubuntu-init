@@ -1,2 +1,4 @@
 I. install_py_pkgs.sh
 > /dev/null does not work.
+
+II. /etc/apt/sources.list of the corresponding ver is required to install language pkgs.

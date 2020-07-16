@@ -28,6 +28,7 @@ while [ -n $1 ]
 do
 	case $1 in
 		-b)
+			google-chrome  # .config/google-chrome is created after the first launch of chrome.
 			sudo cp $2 ~/.config/google-chrome/Default/Bookmarks
 			shift
 			;;
