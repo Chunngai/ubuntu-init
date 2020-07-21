@@ -1,1 +1,3 @@
 I. /etc/apt/sources.list of the corresponding ver is required to install language pkgs.
+
+II. some problems when put pkgs to be installed into ~/Documents

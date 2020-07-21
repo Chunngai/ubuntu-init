@@ -3,4 +3,4 @@
 set -e
 set -x
 
-cat cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/id_rsa.pub

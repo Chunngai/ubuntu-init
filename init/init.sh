@@ -4,6 +4,7 @@ set -e
 set -x
 
 BASE_PATH=$(cd `dirname $0`; pwd)
+ROOT_PATH=`dirname $BASE_PATH`
 
 ARGS=`getopt -o h --long pypkgs,atom,baidunetdisk::,chrome::,ffmpeg,lantern::,onedrive,pycharm,vmware: -- "$@"`
 eval set -- $ARGS
@@ -11,6 +12,10 @@ eval set -- $ARGS
 while true
 do
 	case $1 in
+		-h)
+			echo "atom,baidunetdisk::,chrome::,ffmpeg,lantern::,onedrive,pycharm,vmware:"
+			exit
+			;;
 		--pypkgs)
 			PYPKGS=1
 			shift
@@ -75,10 +80,6 @@ do
 			eval VMWARE_PKG=$2
 			shift 2
 			;;
-		-h)
-			echo "atom,baidunetdisk::,chrome::,ffmpeg,lantern::,onedrive,pycharm,vmware:"
-			exit
-			;;
 		--)
 			shift
 			break
@@ -97,15 +98,15 @@ sudo apt-get -y --purge remove aisleriot gnome-mahjongg gnome-mines gnome-sudoku
 # libgnome-games-support-1-3:amd64 libgnome-games-support-common gamemode libgamemode0 libgamemodeauto0 libgme0:amd64
 
 # cp aliyun & tuna source to /etc/apt
-sudo cp $BASE_PATH/sources/sources.list.aliyun-tuna /etc/apt/sources.list.aliyun-tuna
-# cp sources.list in /etc/apt to sources.list.Ubuntu
-UBUNTU_SOURCES_LIST=$BASE_PATH/sources/sources.list.`lsb_release -i -s`_`lsb_release -r -s`
+sudo cp $ROOT_PATH/sources/sources.list.aliyun-tuna /etc/apt/sources.list.aliyun-tuna
+# cp ubuntu source of the current ver to /etc/apt
+UBUNTU_SOURCES_LIST=$ROOT_PATH/sources/sources.list.`lsb_release -i -s`_`lsb_release -r -s`
 if [ -f $UBUNTU_SOURCES_LIST ]
 then
 	sudo cp $UBUNTU_SOURCES_LIST /etc/apt/sources.list.Ubuntu
 else
 	echo -e "\a"
-	echo "sourses.list.Ubuntu of the ver not found."
+	echo "sources.list.`lsb_release -i -s`_`lsb_release -r -s` not found."
 	exit
 fi
 
@@ -117,28 +118,13 @@ fi
 #sudo apt-get -y upgrade
 
 # Installs vim.
-if ! type vim > /dev/null 2>&1
-then
-	sudo apt-get remove -y --purge vim-common vim-tiny
-	sudo apt-get -y install vim
-fi
+sh $ROOT_PATH/install/install_vim.sh
 
 # Installs pip3.
-if ! type pip3 > /dev/null 2>&1
-then
-	sudo apt-get -y install python3-pip
-fi
-if [ $PYPKGS ]
-then
-	sh $BASE_PATH/install/install_py_pkgs.sh  # Installs python pkgs
-fi
+sh $ROOT_PATH/install/install_pip3.sh
 
 # Installs git.
-if ! type git > /dev/null 2>&1
-then
-	sudo apt-get -y install git
-	sh $BASE_PATH/init_git.sh
-fi
+sh $ROOT_PATH/install/install_git.sh
 
 # Changes the source into the original one.
 #sudo cp /etc/apt/sources.list.Ubuntu /etc/apt/sources.list
@@ -146,18 +132,23 @@ fi
 #sudo apt-get -y upgrade
 
 # ------ Installation. ------
+if [ $PYPKGS ]
+then
+	sh $ROOT_PATH/install/install_py_pkgs.sh
+fi
+
 if [ $ATOM ]
 then
-	sh $BASE_PATH/install/install_atom.sh
+	sh $ROOT_PATH/install/install_atom.sh
 fi
 
 if [ $BAIDUNETDISK ]
 then
 	if [ ! $BAIDUNETDISK_PKG ]
 	then
-		sh $BASE_PATH/install/install_baidunetdisk.sh
+		sh $ROOT_PATH/install/install_baidunetdisk.sh
 	else
-		sh $BASE_PATH/install/install_baidunetdisk.sh -f $BAIDUNETDISK_PKG
+		sh $ROOT_PATH/install/install_baidunetdisk.sh -f $BAIDUNETDISK_PKG
 	fi
 fi
 
@@ -165,38 +156,38 @@ if [ $CHROME ]
 then
 	if [ ! $CHROME_BOOKMARKS ]
 	then
-		sh $BASE_PATH/install/install_chrome.sh
+		sh $ROOT_PATH/install/install_chrome.sh
 	else
-		sh $BASE_PATH/install/install_chrome.sh -b $CHROME_BOOKMARKS
+		sh $ROOT_PATH/install/install_chrome.sh -b $CHROME_BOOKMARKS
 	fi
 fi
 
 if [ $FFMPEG ] 
 then
-	sh $BASE_PATH/install/install_ffmpeg.sh
+	sh $ROOT_PATH/install/install_ffmpeg.sh
 fi
 
 if [ $LANTERN ] 
 then
 	if [ ! $LANTERN_PKG ]
 	then
-		sh $BASE_PATH/install/install_lantern.sh
+		sh $ROOT_PATH/install/install_lantern.sh
 	else
-		sh $BASE_PATH/install/install_lantern.sh -f $LANTERN_PKG
+		sh $ROOT_PATH/install/install_lantern.sh -f $LANTERN_PKG
 	fi
 fi
 
 if [ $ONEDRIVE ]
 then
-	sh $BASE_PATH/install/install_onedrive.sh
+	sh $ROOT_PATH/install/install_onedrive.sh
 fi
 
 if [ $PYCHARM ]
 then
-	sh $BASE_PATH/install/install_pycharm_from_snap.sh
+	sh $ROOT_PATH/install/install_pycharm_from_snap.sh
 fi
 
 if [ $VMWARE ]
 then
-	sh $BASE_PATH/install/install_vmware.sh -f $VMWARE_PKG
+	sh $ROOT_PATH/install/install_vmware.sh -f $VMWARE_PKG
 fi
