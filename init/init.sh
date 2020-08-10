@@ -90,8 +90,10 @@ done
 # ------ Preparation. ------
 
 # dash -> bash.
-echo -e "\a"
-sudo dpkg-reconfigure dash
+#echo -e "\a"
+#sudo dpkg-reconfigure dash
+sudo cp /bin/sh /bin/sh.old
+sudo ln -fs /bin/bash /bin/sh
 
 # Removes games
 sudo apt-get -y --purge remove aisleriot gnome-mahjongg gnome-mines gnome-sudoku 
